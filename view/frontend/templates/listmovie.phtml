@@ -1,0 +1,24 @@
+<?php
+$collection = $this->getMovieCollection();
+?>
+<table class="data table" id="movie-data-table">
+    <caption class="table-caption">Movie List</caption>
+    <thead>
+    <tr>
+        <th scope="col" class="col name">Movie Name</th>
+        <th scope="col" class="col description">Description</th>
+        <th scope="col" class="col rating">Rating</th>
+        <th scope="col" class="col director">Director Id</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($collection as $key => $data): ?>
+        <tr>
+            <td data-th="Name" class="col name"><?php echo $data->getName(); ?></td>
+            <td data-th="Description" class="col description"><?php echo $data->getDescription(); ?></td>
+            <td data-th="Rating" class="col rating"><?php echo $data->getRating(); ?></td>
+            <td data-th="Director Id" class="col director"><?php echo $data->getDirectorId(); ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

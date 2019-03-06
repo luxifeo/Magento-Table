@@ -1,0 +1,20 @@
+<?php
+$collection = $this->getActorCollection();
+?>
+<table class="data table" id="actor-data-table">
+    <caption class="table-caption">Actors List</caption>
+    <thead>
+    <tr>
+        <th scope="col" class="col id">Actor Id</th>
+        <th scope="col" class="col name">Actor Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($collection as $key => $data): ?>
+        <tr>
+            <td data-th="ActorId" class="col id"><?php echo $data->getActorId(); ?></td>
+            <td data-th="Name" class="col name"><?php echo $data->getName(); ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

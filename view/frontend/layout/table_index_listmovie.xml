@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Packt\Table\Block\ListMovie" name="table.listmovie" template="Packt_Table::listmovie.phtml">
+            </block>
+            <block class="Packt\Table\Block\ListActor" name="table.listactor" template="Packt_Table::listactor.phtml">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

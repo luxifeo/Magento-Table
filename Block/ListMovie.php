@@ -1,0 +1,33 @@
+<?php
+
+namespace Packt\Table\Block;
+
+use Magento\Framework\View\Element\Template\Context;
+use Packt\Table\Model\MovieFactory;
+/**
+ * Test List block
+ */
+class ListMovie extends \Magento\Framework\View\Element\Template
+{
+    public function __construct(
+        Context $context,
+        MovieFactory $movie
+    ) {
+        $this->_movie = $movie;
+        parent::__construct($context);
+    }
+
+    public function _prepareLayout()
+    {
+        $this->pageConfig->getTitle()->set(__('Movie List'));
+
+        return parent::_prepareLayout();
+    }
+
+    public function getMovieCollection()
+    {
+        $movie = $this->_movie->create();
+        $collection = $movie->getCollection();
+        return $collection;
+    }
+}
