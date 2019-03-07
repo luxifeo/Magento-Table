@@ -19,10 +19,10 @@ class UpgradeSchema implements UpgradeSchemaInterface
                             ModuleContextInterface $context)
     {
         $setup->startSetup();
-        if (version_compare($context->getVersion(), '1.0.2') < 0) {
+        if (version_compare($context->getVersion(), '1.0.3') < 0) {
 
             // Get module table
-            $tableName = $setup->getTable('magenest_movie');
+            $tableName = $setup->getTable('magenest_movie_actor');
 
             // Check if the table already exists
             if ($setup->getConnection()->isTableExists($tableName) == true) {
@@ -30,15 +30,27 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 $connection = $setup->getConnection();
                 $connection->changeColumn(
                     $tableName,
-                    'director_id',
-                    'director_id',
+                    'movie_id',
+                    'movie_id',
                     ['type' => Table::TYPE_INTEGER, 'length' => 10,
                         'unsigned' => true]
                 );
-                $connection->addForeignKey($setup->getFkName($tableName, 'director_id',
-                    $setup->getTable('magenest_director'), 'director_id'
-                ), $tableName, 'director_id',
-                    $setup->getTable('magenest_director'), 'director_id'
+                $connection->changeColumn(
+                    $tableName,
+                    'actor_id',
+                    'actor_id',
+                    ['type' => Table::TYPE_INTEGER, 'length' => 10,
+                        'unsigned' => true]
+                );
+                $connection->addForeignKey($setup->getFkName($tableName, 'movie_id',
+                    $setup->getTable('magenest_movie'), 'movie_id'
+                ), $tableName, 'movie_id',
+                    $setup->getTable('magenest_movie'), 'movie_id'
+                );
+                $connection->addForeignKey($setup->getFkName($tableName, 'actor_id',
+                    $setup->getTable('magenest_actor'), 'actor_id'
+                ), $tableName, 'actor_id',
+                    $setup->getTable('magenest_actor'), 'actor_id'
                 );
             }
         }
