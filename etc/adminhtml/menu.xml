@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Packt_Table::table" title="Movie" module="Packt_Table" sortOrder="51" resource="Packt_Table::table"/>
+        <add id="Packt_Table::hello" title="Title" module="Packt_Table" sortOrder="10" parent="Packt_Table::table"
+             resource="Packt_Table::hello"/>
+        <add id="Packt_Table::movie" title="Movies" module="Packt_Table" sortOrder="20" parent="Packt_Table::hello"
+             action="table/movie/index" resource="Packt_Table::movie"/>
+        <add id="Packt_Table::actor" title="Actor" module="Packt_Table" sortOrder="30" parent="Packt_Table::hello"
+             action="table/actor/index" resource="Packt_Table::actor"/>
+        <add id="Packt_Table::director" title="Director" module="Packt_Table" sortOrder="40" parent="Packt_Table::hello"
+             action="table/director/index" resource="Packt_Table::director"/>
+        <add id="Packt_Table::hellow" title="TitleW" module="Packt_Table" sortOrder="10" parent="Packt_Table::table"
+             resource="Packt_Table::hellow"/>
+        <add id="Packt_Table::nomovie" title="No Movies" module="Packt_Table" sortOrder="20" parent="Packt_Table::hellow"
+             action="table/movie/index" resource="Packt_Table::nomovie"/>
+    </menu>
+</config>

@@ -6,7 +6,7 @@
  * Time: 00:18
  */
 
-namespace Packt\Table\Model\ResourceModel\Movie;
+namespace Packt\Table\Model\ResourceModel\MnA;
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
     /**
@@ -17,8 +17,6 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      * @param mixed $connection
      * @param \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource
      */
-
-
     public function __construct(
         \Magento\Framework\Data\Collection\EntityFactory $entityFactory,
         \Psr\Log\LoggerInterface $logger,
@@ -38,8 +36,31 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      */
     protected function _construct()
     {
-        $this->_init('Packt\Table\Model\Movie', 'Packt\Table\Model\ResourceModel\Movie');
+        $this->_init('Packt\Table\Model\MnA', 'Packt\Table\Model\ResourceModel\MnA');
         $this->_idFieldName = 'movie_id';
+    }
+
+    /*
+     * @Override \Magento\Framework\Data\Collection addItem()
+     */
+    public function addItem(\Magento\Framework\DataObject $item)
+    {
+        $itemId = $this->_getItemId($item);
+
+        if ($itemId !== null) {
+            if (isset($this->_items[$itemId])) {
+                $actor = $this->_items[$itemId]->getActorName();
+                $newActor = $item->getActorName();
+                $this->_items[$itemId]->setActorName($actor . ', ' . $newActor);
+//                throw new \Exception(
+//                    'Item (' . get_class($item) . ') with the same ID "' . $item->getId() . '" already exists.'
+//                );
+            } else
+                $this->_items[$itemId] = $item;
+        } else {
+            $this->_addItem($item);
+        }
+        return $this;
     }
 
 }

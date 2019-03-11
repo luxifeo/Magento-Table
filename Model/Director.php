@@ -1,19 +1,8 @@
 <?php
 
 namespace Packt\Table\Model;
-class Movie extends \Magento\Framework\Model\AbstractModel
+class Director extends \Magento\Framework\Model\AbstractModel
 {
-    const CACHE_TAG = 'packt_table';
-    /**
-     * @var string
-     */
-    protected $_cacheTag = 'packt_table';
-    /**
-     * Prefix of model events names
-     *
-     * @var string
-     */
-    protected $_eventPrefix = 'packt_table';
     public function __construct(
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
@@ -29,6 +18,6 @@ class Movie extends \Magento\Framework\Model\AbstractModel
 
     public function _construct()
     {
-        $this->_init('Packt\Table\Model\ResourceModel\Movie');
+        $this->_init('Packt\Table\Model\ResourceModel\Director');
     }
 }
