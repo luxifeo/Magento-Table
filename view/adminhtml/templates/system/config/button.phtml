@@ -1,0 +1,12 @@
+<script>
+    require([
+        'jquery',
+        'prototype',
+    ], function(jQuery){
+        jQuery('#btnid').click(function () {
+            location.reload();
+        });
+    });
+</script>
+
+<?php echo $block->getButtonHtml() ?>

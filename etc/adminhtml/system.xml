@@ -6,7 +6,7 @@
             <label>Magenest</label>
         </tab>
         <section id="movie" translate="label" type="text" sortOrder="100"
-                 showInDefault="1" showInWebsite="1" showInStore="1">
+                 showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
             <label>Movie</label>
             <tab>magenest</tab>
             <resource>Packt_Table::config_movie</resource>
@@ -19,13 +19,30 @@
                 </field>
                 <field id="yesno" translate="label" type="select"
                        sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Yes/No Field</label>
+                    <label>Yes/No Field_&lt;span style="color:red"&gt;abcd&lt;/span&gt;</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="custom" translate="label" type="select"
                        sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Source model test</label>
                     <source_model>Packt\Table\Model\Config\Source\Relation</source_model>
+                </field>
+                <field id="mmovie" translate="label" type="text"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Rows in table 'magenest_movie'</label>
+                    <frontend_model>Packt\Table\Block\System\Config\Form\Field\Movie</frontend_model>
+                </field>
+                <field id="mactor" translate="label" type="text"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Rows in table 'magenest actor'</label>
+                    <frontend_model>Packt\Table\Block\System\Config\Form\Field\Actor</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="reload" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Reload</label>
+                    <frontend_model>Packt\Table\Block\System\Config\Form\Field\Button</frontend_model>
                 </field>
             </group>
         </section>

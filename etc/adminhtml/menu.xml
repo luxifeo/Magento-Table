@@ -13,7 +13,7 @@
              action="table/director/index" resource="Packt_Table::director"/>
         <add id="Packt_Table::hellow" title="TitleW" module="Packt_Table" sortOrder="10" parent="Packt_Table::table"
              resource="Packt_Table::hellow"/>
-        <add id="Packt_Table::nomovie" title="No Movies" module="Packt_Table" sortOrder="20" parent="Packt_Table::hellow"
-             action="table/movie/index" resource="Packt_Table::nomovie"/>
+        <add id="Packt_Table::movie_c0nf" title="Movies C0nfiguration" module="Packt_Table" sortOrder="20" parent="Packt_Table::hellow"
+             action="admin/system_config/edit/section/movie/" resource="Packt_Table::nomovie"/>
     </menu>
 </config>
