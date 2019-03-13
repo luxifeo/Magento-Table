@@ -17,7 +17,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      * @param mixed $connection
      * @param \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource
      */
-
+    protected $_idFieldName = 'movie_id';
 
     public function __construct(
         \Magento\Framework\Data\Collection\EntityFactory $entityFactory,

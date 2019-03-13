@@ -20,41 +20,66 @@ class UpgradeSchema implements UpgradeSchemaInterface
     {
         $setup->startSetup();
         if (version_compare($context->getVersion(), '1.0.3') < 0) {
-
             // Get module table
-            $tableName = $setup->getTable('magenest_movie_actor');
-
-            // Check if the table already exists
-            if ($setup->getConnection()->isTableExists($tableName) == true) {
-                // Declare data
-                $connection = $setup->getConnection();
-                $connection->changeColumn(
-                    $tableName,
-                    'movie_id',
-                    'movie_id',
-                    ['type' => Table::TYPE_INTEGER, 'length' => 10,
-                        'unsigned' => true]
-                );
-                $connection->changeColumn(
-                    $tableName,
-                    'actor_id',
-                    'actor_id',
-                    ['type' => Table::TYPE_INTEGER, 'length' => 10,
-                        'unsigned' => true]
-                );
-                $connection->addForeignKey($setup->getFkName($tableName, 'movie_id',
-                    $setup->getTable('magenest_movie'), 'movie_id'
-                ), $tableName, 'movie_id',
-                    $setup->getTable('magenest_movie'), 'movie_id'
-                );
-                $connection->addForeignKey($setup->getFkName($tableName, 'actor_id',
-                    $setup->getTable('magenest_actor'), 'actor_id'
-                ), $tableName, 'actor_id',
-                    $setup->getTable('magenest_actor'), 'actor_id'
-                );
-            }
+            $this->UpgradeV1_0_2($setup);
         }
-
+        if (version_compare($context->getVersion(), '1.0.4') < 0) {
+            // Get module table
+            $this->UpgradeV1_0_3($setup);
+        }
         $setup->endSetup();
+    }
+
+    /**
+     * @param SchemaSetupInterface $setup
+     */
+    private function Upgradev1_0_2(SchemaSetupInterface $setup): void
+    {
+        $tableName = $setup->getTable('magenest_movie_actor');
+
+        // Check if the table already exists
+        if ($setup->getConnection()->isTableExists($tableName) == true) {
+            // Declare data
+            $connection = $setup->getConnection();
+            $connection->changeColumn(
+                $tableName,
+                'movie_id',
+                'movie_id',
+                ['type' => Table::TYPE_INTEGER, 'length' => 10,
+                    'unsigned' => true]
+            );
+            $connection->changeColumn(
+                $tableName,
+                'actor_id',
+                'actor_id',
+                ['type' => Table::TYPE_INTEGER, 'length' => 10,
+                    'unsigned' => true]
+            );
+            $connection->addForeignKey($setup->getFkName($tableName, 'movie_id',
+                $setup->getTable('magenest_movie'), 'movie_id'
+            ), $tableName, 'movie_id',
+                $setup->getTable('magenest_movie'), 'movie_id'
+            );
+            $connection->addForeignKey($setup->getFkName($tableName, 'actor_id',
+                $setup->getTable('magenest_actor'), 'actor_id'
+            ), $tableName, 'actor_id',
+                $setup->getTable('magenest_actor'), 'actor_id'
+            );
+        }
+    }
+
+    private function UpgradeV1_0_3(SchemaSetupInterface $setup)
+    {
+        $tableName = $setup->getTable('magenest_movie');
+        if ($setup->getConnection()->isTableExists($tableName) == true) {
+            // Declare data
+            $connection = $setup->getConnection();
+            $connection->addColumn(
+                $tableName,
+                'actor',
+                ['type' =>  \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'nullable' => true,
+                    'comment' => 'Multiselect Testing']);
+        }
     }
 }

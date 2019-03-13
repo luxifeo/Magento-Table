@@ -9,6 +9,7 @@ $collection = $this->getMovieCollection();
         <th scope="col" class="col description">Description</th>
         <th scope="col" class="col rating">Rating</th>
         <th scope="col" class="col director">Director Id</th>
+        <th scope="col" class="col actor">Actor</th>
     </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@ $collection = $this->getMovieCollection();
             <td data-th="Description" class="col description"><?php echo $data->getDescription(); ?></td>
             <td data-th="Rating" class="col rating"><?php echo $data->getRating(); ?></td>
             <td data-th="Director Id" class="col director"><?php echo $data->getDirectorId(); ?></td>
+            <td data-th="Actor" class="col actor"><?php echo $data->getActor(); ?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>

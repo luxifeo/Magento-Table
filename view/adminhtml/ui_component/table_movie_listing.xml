@@ -19,7 +19,7 @@
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">MovieGridDataProvider</argument>
             <argument name="name" xsi:type="string">table_movie_listing_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="primaryFieldName" xsi:type="string">movie_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -75,7 +75,7 @@
                 <item name="config" xsi:type="array">
                     <item name="selectProvider" xsi:type="string">table_movie_listing.table_movie_listing.table_movie_columns.ids</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
-                    <item name="indexField" xsi:type="string">id</item>
+                    <item name="indexField" xsi:type="string">movie_id</item>
                 </item>
             </argument>
             <!-- Mass actions which you want to add in your grid-->
@@ -135,7 +135,7 @@
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
                     <item name="resizeDefaultWidth" xsi:type="string">55</item>
-                    <item name="indexField" xsi:type="string">id</item>
+                    <item name="indexField" xsi:type="string">movie_id</item>
                 </item>
             </argument>
         </selectionsColumn>
@@ -200,7 +200,7 @@
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
                     <item name="resizeDefaultWidth" xsi:type="string">107</item>
-                    <item name="indexField" xsi:type="string">id</item>
+                    <item name="indexField" xsi:type="string">movie_id</item>
                 </item>
             </argument>
         </actionsColumn>

@@ -31,6 +31,9 @@ class Save extends \Magento\Backend\App\Action
         if (!$data['movie_id']) {
             unset($data['movie_id']);
         }
+
+        if(array_key_exists('actor', $data))
+            $data['actor'] = implode(", ", $data['actor']);
         try {
             $rowData = $this->movieFactory->create();
             $rowData->addData($data);

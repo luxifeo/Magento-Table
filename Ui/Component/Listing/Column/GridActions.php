@@ -7,8 +7,8 @@ use Magento\Framework\UrlInterface;
 class GridActions extends Column
 {
     /** Url path */
-    const GRID_URL_PATH_EDIT = 'test/grid/addrow';
-    const GRID_URL_PATH_DELETE = 'test/grid/delete';
+    const GRID_URL_PATH_EDIT = 'table/movie/add';
+    const GRID_URL_PATH_DELETE = 'table/movie/delete';
     /** @var UrlInterface */
     protected $urlBuilder;
     /**
@@ -46,13 +46,13 @@ class GridActions extends Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
                 $name = $this->getData('name');
-                if (isset($item['id'])) {
+                if (isset($item['movie_id'])) {
                     $item[$name]['edit'] = [
-                        'href' => $this->urlBuilder->getUrl($this->editUrl, ['id' => $item['id']]),
+                        'href' => $this->urlBuilder->getUrl($this->editUrl, ['id' => $item['movie_id']]), // ??????
                         'label' => __('Edit')
                     ];
                     $item[$name]['delete'] = [
-                        'href' => $this->urlBuilder->getUrl(self::GRID_URL_PATH_DELETE, ['id' => $item['id']]),
+                        'href' => $this->urlBuilder->getUrl(self::GRID_URL_PATH_DELETE, ['id' => $item['movie_id']]),
                         'label' => __('Delete'),
                         'confirm' => [
                             'title' => __('Delete "${ $.$data.name }"'),

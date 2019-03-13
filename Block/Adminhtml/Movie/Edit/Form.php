@@ -31,9 +31,13 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig,
         \Packt\Table\Model\Status $options,
+        \Packt\Table\Model\Config\Source\Director $director,
+        \Packt\Table\Model\Config\Source\Actor $actor,
         array $data = []
     )
     {
+        $this->actor = $actor;
+        $this->director = $director;
         $this->_options = $options;
         $this->_wysiwygConfig = $wysiwygConfig;
         parent::__construct($context, $registry, $formFactory, $data);
@@ -46,6 +50,8 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
      */
     protected function _prepareForm()
     {
+        $_actor = $this->actor->toOptionArray();
+        $_director = $this->director->toOptionArray();
         $model = $this->_coreRegistry->registry('row_data');
         $form = $this->_formFactory->create(
             ['data' => [
@@ -115,14 +121,26 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             ]
         );
         $fieldset->addField(
+            'actor',
+            'multiselect',
+            [
+                'name' => 'actor',
+                'label' => __('Actor'),
+                'id' => 'actor',
+                'title' => __('Actor'),
+                'values' => $_actor,
+            ]
+        );
+        $fieldset->addField(
             'director_id',
-            'text',
+            'multiselect',
             [
                 'name' => 'director_id',
                 'label' => __('Director Id'),
                 'id' => 'director_id',
                 'title' => __('Director_id'),
                 'required' => true,
+                'values' => $_director,
             ]
         );
         $form->setValues($model->getData());
