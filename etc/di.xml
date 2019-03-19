@@ -74,4 +74,10 @@
             </argument>
         </arguments>
     </type>
+    <!--<type name="Magento\Config\Model\Config">-->
+        <!--<plugin name="admin_system_config_save_plugin" type="Packt\Table\Plugin\ConfigPlugin" sortOrder="1"/>-->
+    <!--</type>-->
+    <type name="Magento\Checkout\CustomerData\AbstractItem">
+        <plugin name="packt_table_image" type="Packt\Table\Plugin\Image" sortOrder="1"/>
+    </type>
 </config>

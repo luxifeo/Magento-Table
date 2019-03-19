@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_register_success">
+        <observer name="pttable_firstname" instance="Packt\Table\Observer\ChangeFirstname" />
+    </event>
+    <event name="packt_table_display_text">
+        <observer name="display_text" instance="Packt\Table\Observer\ChangeDisplayText" />
+    </event>
+</config>
