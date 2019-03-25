@@ -1,0 +1,28 @@
+<?php
+$customerCollection = $this->getCustomerCollection();
+$fullLink = $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$link = preg_replace('/\/(.*)\/(.*)\/(.*)\/(.*)\//', '/$1/pub/media/customer', $fullLink);
+foreach ($customerCollection as $customer) {
+    if ($customer->getId() == $_SESSION['customer_base']['customer_id']) {
+        $myInfo = $customer;
+    }
+}
+?>
+    <div class="field choice" id="avatar-chkbox">
+        <input type="checkbox" name="change_avatar" id="change-avatar" data-role="change-avatar" value="0" title="Change Avatar" class="checkbox">
+        <label class="label" for="change-avatar"><span>Change Avatar</span></label>
+    </div>
+    <div class="field test_attribute" style="display:none" id="avatar-input">
+        <label for="test_attribute" class="label"><span><?php
+                echo __('Set Avatar') ?></span></label>
+        <div class="control">
+            <input type="file" onchange="loadImage(event)" name="test_attribute" id="test_attribute" title="<?php
+            echo __('Imagee') ?>" accept="image/*" class="input-file"  autocomplete="off">
+        </div>
+        <img width="100px" height="100px" id="preview" src="<?php
+        echo $link . $myInfo->getData('test_attribute');
+        ?>">
+    </div>
+<script>
+
+</script>

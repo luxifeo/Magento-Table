@@ -1,0 +1,21 @@
+<?php
+$customerCollection = $this->getCustomerCollection();
+$fullLink = $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$link = preg_replace('/\/(.*)\/(.*)\/(.*)\//', '/$1/pub/media/customer', $fullLink);
+foreach ($customerCollection as $customer) {
+    if ($customer->getId() == $_SESSION['customer_base']['customer_id']) {
+        $myInfo = $customer;
+    }
+}
+?>
+<img src="<?php
+        echo $link . $myInfo->getData('test_attribute');
+?>
+" alt="My Avatar" height="150" width="150">
+<div>
+<label>My Name</label>
+    <p><?php echo $myInfo->getData('firstname') . ' ' . $myInfo->getData('lastname');
+        ?></p>
+    <label>My Email:</label>
+    <p><?php echo $myInfo->getData('email'); ?></p>
+</div>
