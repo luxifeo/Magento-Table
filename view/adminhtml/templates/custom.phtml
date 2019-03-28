@@ -1,0 +1,15 @@
+<div class="dashboard-container container-fluid">
+    <div class="row">
+        <div class="dashboard-main col-m-6">
+            <p>Modules: <?php echo $this->getModuleCount(); ?></p>
+            <p>Custom modules: <?php echo $this->getCustomModuleCount(); ?></p>
+        </div>
+        <div class="dashboard-secondary col-m-6">
+            <p>Credit Memos created :<?php echo $this->getCreditMemoCount(); ?></p>
+            <p>Orders created :<?php echo $this->getOrderCount(); ?></p>
+            <p>Invoices created :<?php echo $this->getInvoiceCount(); ?></p>
+            <p>Products :<?php echo $this->getProductCount(); ?></p>
+            <p>Customers :<?php echo $this->getCustomerCount(); ?></p>
+        </div>
+    </div>
+</div>

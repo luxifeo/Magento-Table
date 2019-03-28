@@ -15,5 +15,9 @@
              resource="Packt_Table::hellow"/>
         <add id="Packt_Table::movie_c0nf" title="Movies C0nfiguration" module="Packt_Table" sortOrder="20" parent="Packt_Table::hellow"
              action="admin/system_config/edit/section/movie/" resource="Packt_Table::nomovie"/>
+        <add id="Packt_Table::movie_ed1t" title="Another Movie Edit" module="Packt_Table" sortOrder="20" parent="Packt_Table::hellow"
+             action="table/movie/edit" resource="Packt_Table::anothermovie"/>
+        <add id="Packt_Table::report" title="Report" module="Packt_Table" sortOrder="21" parent="Packt_Table::hellow"
+             action="table/custom/index" resource="Packt_Table::report"/>
     </menu>
 </config>

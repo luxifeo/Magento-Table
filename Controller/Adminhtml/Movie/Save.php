@@ -31,9 +31,9 @@ class Save extends \Magento\Backend\App\Action
         if (!$data['movie_id']) {
             unset($data['movie_id']);
         }
-        $objData = new \Magento\Framework\DataObject($data);
-        $this->_eventManager->dispatch('packt_table_save_movie', ['movie'=>$objData]);
-        $data['rating'] = $objData->getRating();
+//        $objData = new \Magento\Framework\DataObject($data);
+//        $this->_eventManager->dispatch('packt_table_save_movie', ['movie'=>$objData]);
+//        $data['rating'] = $objData->getRating();
         if(array_key_exists('actor', $data))
             $data['actor'] = implode(",", $data['actor']); // Cường chữa
         try {
