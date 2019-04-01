@@ -19,13 +19,16 @@ class UpgradeSchema implements UpgradeSchemaInterface
                             ModuleContextInterface $context)
     {
         $setup->startSetup();
+        if (version_compare($context->getVersion(), '1.0.2') < 0) {
+            // Get module table
+            $this->upgradeV1_0_2($setup);
+        }
         if (version_compare($context->getVersion(), '1.0.3') < 0) {
             // Get module table
-            $this->UpgradeV1_0_2($setup);
+            $this->upgradeV1_0_3($setup);
         }
-        if (version_compare($context->getVersion(), '1.0.4') < 0) {
-            // Get module table
-            $this->UpgradeV1_0_3($setup);
+        if (version_compare($context->getVersion(), '1.0.4' < 0)) {
+            $this->upgradev1_0_4($setup);
         }
         $setup->endSetup();
     }
@@ -33,7 +36,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
     /**
      * @param SchemaSetupInterface $setup
      */
-    private function Upgradev1_0_2(SchemaSetupInterface $setup): void
+    private function upgradeV1_0_2(SchemaSetupInterface $setup): void
     {
         $tableName = $setup->getTable('magenest_movie_actor');
 
@@ -68,7 +71,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
         }
     }
 
-    private function UpgradeV1_0_3(SchemaSetupInterface $setup)
+    private function upgradeV1_0_3(SchemaSetupInterface $setup)
     {
         $tableName = $setup->getTable('magenest_movie');
         if ($setup->getConnection()->isTableExists($tableName) == true) {
@@ -77,9 +80,24 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $connection->addColumn(
                 $tableName,
                 'actor',
-                ['type' =>  \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                ['type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                     'nullable' => true,
                     'comment' => 'Multiselect Testing']);
         }
+    }
+
+    private function upgradeV1_0_4(SchemaSetupInterface $setup)
+    {
+        $table = $setup->getTable('magenest_movie');
+        $setup->getConnection()
+            ->addIndex(
+                $table,
+                $setup->getIdxName(
+                    $table,
+                    ['name', 'description'],
+                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT),
+                ['name', 'description'],
+                \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+            );
     }
 }

@@ -37,6 +37,7 @@
         <filters name="listing_filters">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">params.filters</item>
                     <item name="columnsProvider" xsi:type="string">table_director_listing.table_director_listing.table_director_columns</item>
                     <item name="storageConfig" xsi:type="array">
                         <item name="provider" xsi:type="string">table_director_listing.table_director_listing.listing_top.bookmarks</item>
